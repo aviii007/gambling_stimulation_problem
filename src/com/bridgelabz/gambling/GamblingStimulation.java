@@ -4,6 +4,10 @@ public class GamblingStimulation {
     public static int STARTINGSTAKE = 100;
     public static final int BETSTAKE = 1;
     public static final int DAY=20;
+    public static int max_val=0;
+    public static int min_val=0;
+    public static int luckyDay=0;
+    public static int unluckyDay=0;
     public static String winOrLose() {
         double random=(int) Math.floor(Math.random() * 10) % 2;
         if(random==1)
@@ -25,11 +29,13 @@ public class GamblingStimulation {
         {
             int win=STARTINGSTAKE-initialStackOfDay;
             System.out.println("Day "+i+" win = "+win);
+            max(win,i);
         }
         else
         {
             int loss=initialStackOfDay-STARTINGSTAKE;
             System.out.println("Day "+i+" loss = "+loss);
+            min(loss,i);
         }
 
     }
@@ -39,6 +45,21 @@ public class GamblingStimulation {
             ResignDay(i);
         }
     }
+    public static void min(int loss,int i){
+        if(min_val<loss)
+        {
+            min_val=loss;
+            unluckyDay=i;
+        }
+    }
+    public static void max(int win,int i){
+        if(max_val<win)
+        {
+            max_val=win;
+            luckyDay=i;
+        }
+
+    }
     public static void main(String[] args) {
         System.out.println("welcome to gambling stimulation problem");
         twentyDay();
@@ -46,6 +67,8 @@ public class GamblingStimulation {
             System.out.println("Gambler win and total amount = " +STARTINGSTAKE);
         else
             System.out.println("Gambler loss and total amount = " +STARTINGSTAKE);
+        System.out.println("Lucky Day is "+luckyDay+"  Amount won on that day ="+max_val);
+        System.out.println("Unlucky Day is "+unluckyDay+"  Amount loss on that day ="+min_val);
     }
 
 }
