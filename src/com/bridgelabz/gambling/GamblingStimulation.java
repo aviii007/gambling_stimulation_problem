@@ -3,9 +3,6 @@ package com.bridgelabz.gambling;
 public class GamblingStimulation {
     public static int STARTINGSTAKE = 100;
     public static final int BETSTAKE = 1;
-    public static double FIFTY_PERCENT_LOSS=STARTINGSTAKE*0.5;
-    public static double FIFTY_PERCENT_GAIN=STARTINGSTAKE*1.5;
-
     public static final int DAY=20;
     public static String winOrLose() {
         double random=(int) Math.floor(Math.random() * 10) % 2;
@@ -14,19 +11,32 @@ public class GamblingStimulation {
         else
             return "Lossing";
     }
-    public static void ResignDay() {
-        int loss_amt=0,won_amt=0;
+    public static void ResignDay(int i) {
+        int initialStackOfDay=STARTINGSTAKE;
+        double FIFTY_PERCENT_LOSS=STARTINGSTAKE*0.5;;
+        double FIFTY_PERCENT_GAIN=STARTINGSTAKE*1.5;
         while (STARTINGSTAKE > (FIFTY_PERCENT_LOSS) && STARTINGSTAKE < (FIFTY_PERCENT_GAIN)) {
             if (winOrLose() == "Winning")
                 STARTINGSTAKE += BETSTAKE;
             else
                 STARTINGSTAKE -= BETSTAKE;
         }
+        if(initialStackOfDay<STARTINGSTAKE)
+        {
+            int win=STARTINGSTAKE-initialStackOfDay;
+            System.out.println("Day "+i+" win = "+win);
+        }
+        else
+        {
+            int loss=initialStackOfDay-STARTINGSTAKE;
+            System.out.println("Day "+i+" loss = "+loss);
+        }
 
     }
     public static void twentyDay(){
+
         for(int i=1;i<=DAY;i++){
-            ResignDay();
+            ResignDay(i);
         }
     }
     public static void main(String[] args) {
