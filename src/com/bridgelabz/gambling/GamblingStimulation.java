@@ -63,12 +63,19 @@ public class GamblingStimulation {
     public static void main(String[] args) {
         System.out.println("welcome to gambling stimulation problem");
         twentyDay();
-        if(STARTINGSTAKE>100)
-            System.out.println("Gambler win and total amount = " +STARTINGSTAKE);
-        else
-            System.out.println("Gambler loss and total amount = " +STARTINGSTAKE);
         System.out.println("Lucky Day is "+luckyDay+"  Amount won on that day ="+max_val);
         System.out.println("Unlucky Day is "+unluckyDay+"  Amount loss on that day ="+min_val);
+        while(true) {
+            if (STARTINGSTAKE > 100) {
+                System.out.println("Gambler win and total amount = " + STARTINGSTAKE);
+                System.out.println("gambler won so he like to continue the game");
+                twentyDay();
+            } else {
+                System.out.println("Gambler loss and total amount = " + STARTINGSTAKE);
+                System.out.println("gambler lost all the money so he cant keep playing");
+                break;
+            }
+        }
     }
 
 }
